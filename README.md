@@ -85,14 +85,14 @@ streamlit run app.py
 
 ## Example Inputs
 
-| Grade | Topic | Expected Behavior |
-|-------|-------|-------------------|
-| 4 | Types of angles | Pass on first try |
-| 3 | Photosynthesis | Fail -> Refine -> Pass |
-| 1 | Mitochondria | Fail -> Refine -> Still Fail (topic too advanced) |
-| 9 | Mitochondria | Pass on first try |
-| 5 | The solar system | Pass on first try |
-| 4 | The water cycle | Fail -> Refine -> Pass |
+| Grade | Topic            | Expected Behavior                                 |
+| ----- | ---------------- | ------------------------------------------------- |
+| 4     | Types of angles  | Pass on first try                                 |
+| 3     | Photosynthesis   | Fail -> Refine -> Pass                            |
+| 1     | Mitochondria     | Fail -> Refine -> Still Fail (topic too advanced) |
+| 9     | Mitochondria     | Pass on first try                                 |
+| 5     | The solar system | Pass on first try                                 |
+| 4     | The water cycle  | Fail -> Refine -> Pass                            |
 
 > Results are probabilistic -- the LLM may behave differently across runs.
 
