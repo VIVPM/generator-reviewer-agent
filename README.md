@@ -8,17 +8,24 @@ A multi-agent pipeline that generates and reviews grade-appropriate educational 
 User Input (Grade + Topic)
         |
         v
-  Generator Agent  ──>  Reviewer Agent
-        |                     |
-        |              pass?  |
-        |             /    \  |
-        |           yes     no
-        |            |       |
-        |         Done    Feedback
-        |                    |
-        v                    v
-  Generator Agent  ──>  Reviewer Agent  ──>  Final Output
-  (with feedback)        (second pass)
+  Generator Agent
+        |
+        v
+  Reviewer Agent
+        |
+     pass?
+      / \
+    yes   no
+     |     |
+   Done  Feedback
+           |
+           v
+     Generator Agent
+     (with feedback)
+           |
+           v
+     Reviewer Agent  ──>  Final Output
+     (second pass)
 ```
 
 **Generator Agent** — Produces a short explanation and 3 MCQs (4 options each) as structured JSON, tailored to the student's grade level. Uses Gemini 2.5 Flash with `temperature=0.4`.
@@ -38,7 +45,7 @@ User Input (Grade + Topic)
 ### 1. Clone the repository
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/VIVPM/generator-reviewer-agent.git
 cd generator-reviewer-agent
 ```
 
@@ -58,11 +65,7 @@ pip install -r requirements.txt
 
 ### 4. Set up environment variables
 
-```bash
-cp .env.example .env
-```
-
-Open `.env` and replace `your_gemini_api_key_here` with your actual [Gemini API key](https://aistudio.google.com/apikey).
+Rename `.env.example` to `.env` and replace `your_gemini_api_key_here` with your actual [Gemini API key](https://aistudio.google.com/apikey).
 
 ### 5. Run the app
 
