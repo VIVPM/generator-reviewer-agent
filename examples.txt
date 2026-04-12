@@ -1,0 +1,62 @@
+EXAMPLE INPUTS FOR THE EKLAVYA AGENT PIPELINE
+==============================================
+
+Case 1 — Topic passes in a higher grade but fails in a lower grade
+                   even after the one-shot refinement (retry cap reached)
+------------------------------------------------------------------
+The topic itself is beyond the lower grade's scope, so no amount of
+vocabulary simplification can make it age-appropriate. The refined
+output will still be flagged by the reviewer.
+
+  Passes in higher grade:
+    Grade: 9
+    Topic: Mitochondria
+
+  Fails in lower grade (expect fail -> refine -> still fail):
+    Grade: 1
+    Topic: Mitochondria
+
+  Other good "hard fail" combos for lower grades:
+    Grade: 2, Topic: Quadratic equations
+    Grade: 1, Topic: Newton's laws of motion
+    Grade: 2, Topic: Electromagnetic induction
+
+
+Case 2 — Topic passes on the first try (no refinement needed)
+------------------------------------------------------------------
+Topic is well within the grade's scope and easy to explain in simple
+language, so the first draft should clear the reviewer.
+
+    Grade: 4
+    Topic: Types of angles
+
+  Other safe "pass on first try" combos:
+    Grade: 3, Topic: Parts of a plant
+    Grade: 2, Topic: Days of the week
+    Grade: 5, Topic: The solar system (names of planets)
+    Grade: 4, Topic: Nouns and verbs
+
+
+Case 3 — Topic fails first, then passes after refinement (same grade)
+------------------------------------------------------------------
+Topic is appropriate for the grade, but the first draft usually slips
+in vocabulary or concepts above the grade level. The reviewer flags
+those issues; the generator re-runs with that feedback and produces a
+simpler version that passes.
+
+    Grade: 3
+    Topic: Photosynthesis
+
+  Other good "fail -> refine -> pass" combos:
+    Grade: 4, Topic: The water cycle
+    Grade: 5, Topic: Gravity
+    Grade: 2, Topic: Solid, liquid, and gas
+    Grade: 4, Topic: How the heart works
+
+
+Notes
+-----
+- Results are probabilistic — the LLM is not fully deterministic even
+  at low temperature. If a case behaves differently, run it again or
+  try one of the alternatives listed.
+- The retry cap is one refinement pass, matching the PDF spec.
